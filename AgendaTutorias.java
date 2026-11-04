@@ -37,7 +37,7 @@ public class AgendaTutorias {
     public Cita verificarCitaEnArreglo(int matriculaBuscada) {
         for (int indice = 0; indice < contadorCitas; indice++) {
             if (citasRegistradas[indice] != null) {
-                if (citasRegistradas[indice].getAlumno().getMatricula() == matriculaBuscada) {
+                if (citasRegistradas[indice].getMatricula() == matriculaBuscada) {
                     Cita encontrada = citasRegistradas[indice];
                     // Se marca como null porque ya paso directamente con el tutor
                     citasRegistradas[indice] = null;
@@ -58,8 +58,8 @@ public class AgendaTutorias {
         if (!listaEspera.isEmpty()) {
             Cita atendido = listaEspera.removeFirst();
             System.out.println("Atendiendo de la lista de espera -> "
-                    + atendido.getAlumno().getNombre() + " "
-                    + atendido.getAlumno().getMatricula());
+                    + atendido.getNombre() + " "
+                    + atendido.getMatricula());
         } else {
             System.out.println("La lista de espera esta vacia.");
         }
@@ -72,8 +72,8 @@ public class AgendaTutorias {
         for (int indice = 0; indice < contadorCitas; indice++) {
             if (citasRegistradas[indice] != null) {
                 System.out.println("Indice [" + indice + "] -> Alumno: "
-                        + citasRegistradas[indice].getAlumno().getNombre()
-                        + " | Matricula: " + citasRegistradas[indice].getAlumno().getMatricula()
+                        + citasRegistradas[indice].getNombre()
+                        + " | Matricula: " + citasRegistradas[indice].getMatricula()
                         + " | Motivo: " + citasRegistradas[indice].getMotivo());
                 hayCitasEnArreglo = true;
             }
@@ -86,8 +86,8 @@ public class AgendaTutorias {
         if (!listaEspera.isEmpty()) {
             for (int i = 0; i < listaEspera.size(); i++) {
                 Cita c = listaEspera.get(i);
-                System.out.println((i + 1) + ". Alumno: " + c.getAlumno().getNombre()
-                        + " | Matricula: " + c.getAlumno().getMatricula()
+                System.out.println((i + 1) + ". Alumno: " + c.getNombre()
+                        + " | Matricula: " + c.getMatricula()
                         + " | Motivo: " + c.getMotivo());
             }
         } else {

@@ -34,8 +34,8 @@ public class Main {
 
                     if (citaEncontrada != null) {
                         System.out.println("Cita registrada encontrada en el arreglo!");
-                        System.out.println("Alumno: " + citaEncontrada.getAlumno().getNombre()
-                                + " " + citaEncontrada.getAlumno().getMatricula());
+                        System.out.println("Alumno: " + citaEncontrada.getNombre()
+                                + " " + citaEncontrada.getMatricula());
                         System.out.println("Motivo: " + citaEncontrada.getMotivo());
                         System.out.println(">> Pasa directamente con el tutor.");
                     } else {
