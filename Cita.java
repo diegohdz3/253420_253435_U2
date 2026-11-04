@@ -4,23 +4,26 @@ public class Cita {
     private int matricula;
     private String nombre;
     private String motivo;
+    private String hora;
     private boolean tieneCitaPrevia;
 
-    // Constructor usando objeto Alumno
+    // Constructor usando objeto Alumno y hora
+    public Cita(Alumno alumno, String motivo, String hora, boolean tieneCitaPrevia) {
+        this.alumno = alumno;
+        this.matricula = alumno.getMatricula();
+        this.nombre = alumno.getNombre();
+        this.motivo = motivo;
+        this.hora = hora;
+        this.tieneCitaPrevia = tieneCitaPrevia;
+    }
+
+    // Constructor sin hora (asigna "En espera" por defecto)
     public Cita(Alumno alumno, String motivo, boolean tieneCitaPrevia) {
         this.alumno = alumno;
         this.matricula = alumno.getMatricula();
         this.nombre = alumno.getNombre();
         this.motivo = motivo;
-        this.tieneCitaPrevia = tieneCitaPrevia;
-    }
-
-    // Constructor usando datos directos
-    public Cita(int matricula, String nombre, String motivo, boolean tieneCitaPrevia) {
-        this.alumno = new Alumno(nombre, matricula);
-        this.matricula = matricula;
-        this.nombre = nombre;
-        this.motivo = motivo;
+        this.hora = "Por turno";
         this.tieneCitaPrevia = tieneCitaPrevia;
     }
 
@@ -57,6 +60,14 @@ public class Cita {
 
     public void setMotivo(String motivo) {
         this.motivo = motivo;
+    }
+
+    public String getHora() {
+        return hora;
+    }
+
+    public void setHora(String hora) {
+        this.hora = hora;
     }
 
     public boolean getTieneCitaPrevia() {
