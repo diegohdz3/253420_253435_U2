@@ -40,7 +40,6 @@ public class Main {
                         System.out.println("Cita registrada encontrada en el arreglo!");
                         System.out.println("Alumno: " + citaEncontrada.getNombre()
                                 + " | Matricula: " + citaEncontrada.getMatricula());
-                        System.out.println("Hora programada: " + citaEncontrada.getHora());
                         System.out.println("Motivo: " + citaEncontrada.getMotivo());
                         System.out.println(">> Pasa directamente con el tutor.");
                     } else {
@@ -58,7 +57,7 @@ public class Main {
                             tipoUrgencia = entrada.nextInt();
 
                             Alumno nuevoAlumno = new Alumno(nombre, matricula);
-                            Cita nuevoRegistro = new Cita(nuevoAlumno, motivo, "Por turno", false);
+                            Cita nuevoRegistro = new Cita(nuevoAlumno.getMatricula(), nuevoAlumno.getNombre(), motivo, false);
 
                             if (tipoUrgencia == 2) {
                                 agenda.registrarAlInicioDeLista(nuevoRegistro);
@@ -87,7 +86,7 @@ public class Main {
                         hora = entrada.nextLine();
 
                         Alumno al = new Alumno(nombre, matricula);
-                        Cita nuevaCita = new Cita(al, motivo, hora, true);
+                        Cita nuevaCita = new Cita(al.getMatricula(), al.getNombre(), motivo + " (" + hora + ")", true);
                         agenda.guardarCitaEnArreglo(nuevaCita);
                     }
                     break;

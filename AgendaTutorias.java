@@ -20,9 +20,9 @@ public class AgendaTutorias {
         Alumno alumno1 = new Alumno("Juan", 181234);
         Alumno alumno2 = new Alumno("Ana", 193234);
 
-        // Se asignan al arreglo de citas registradas con su hora
-        citasRegistradas[0] = new Cita(alumno1, "Dudas de POO", "10:00 AM", true);
-        citasRegistradas[1] = new Cita(alumno2, "Recursividad", "10:30 AM", true);
+        // Se asignan al arreglo de citas registradas
+        citasRegistradas[0] = new Cita(alumno1.getMatricula(), alumno1.getNombre(), "Dudas de POO (10:00 AM)", true);
+        citasRegistradas[1] = new Cita(alumno2.getMatricula(), alumno2.getNombre(), "Recursividad (10:30 AM)", true);
         contadorCitas = 2;
     }
 
@@ -136,7 +136,6 @@ public class AgendaTutorias {
                 System.out.println("Indice [" + indice + "] -> Alumno: "
                         + citasRegistradas[indice].getNombre()
                         + " | Matricula: " + citasRegistradas[indice].getMatricula()
-                        + " | Hora: " + citasRegistradas[indice].getHora()
                         + " | Motivo: " + citasRegistradas[indice].getMotivo());
                 hayCitasEnArreglo = true;
             }
@@ -151,7 +150,6 @@ public class AgendaTutorias {
                 Cita c = listaEspera.get(i);
                 System.out.println("Nodo " + (i + 1) + " -> Alumno: " + c.getNombre()
                         + " | Matricula: " + c.getMatricula()
-                        + " | Hora: " + c.getHora()
                         + " | Motivo: " + c.getMotivo());
             }
         } else {
