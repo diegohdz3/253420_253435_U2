@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    // === EXPLICA COMPANERA: Metodo main y estructura del Menu con do-while ===
+    // === EXPLICA HARUMI: Metodo main y estructura del Menu con do-while ===
     public static void main(String[] args) {
         visualizarOperaciones();
     }

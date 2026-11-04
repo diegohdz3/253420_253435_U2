@@ -1,4 +1,4 @@
-// === EXPLICA COMPANERA: Clase Alumno (Modelo POO basico) ===
+// === EXPLICA HARUMI: Clase Alumno (Modelo POO basico) ===
 // Esta clase guarda los datos personales del estudiante: su nombre y matricula.
 public class Alumno {
 

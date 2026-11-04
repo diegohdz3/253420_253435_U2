@@ -1,4 +1,4 @@
-// === EXPLICA COMPANERA: Clase Cita (Datos de cada registro de tutoria) ===
+// === EXPLICA HARUMI: Clase Cita (Datos de cada registro de tutoria) ===
 // Representa cada cita o turno: guarda matricula, nombre, motivo y si tiene cita previa (true o false).
 public class Cita {
 
