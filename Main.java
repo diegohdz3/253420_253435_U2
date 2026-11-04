@@ -15,11 +15,11 @@ public class Main {
         String motivo;
 
         do {
-            System.out.println("\nOPERACIONES DE LA AGENDA DE TUTORIAS");
-            System.out.println("1. Llegada de alumno (Verificar cita o registrarse)");
-            System.out.println("2. Agendar cita previa");
-            System.out.println("3. Mostrar lista de citas");
-            System.out.println("4. Atender al primer alumno de la lista");
+            System.out.println("\nAGENDA DE CITAS PARA TUTORIAS INDIVIDUALES");
+            System.out.println("1. Llegada de alumno (Verificar cita en Arreglo o registrar en Lista)");
+            System.out.println("2. Agendar cita previa (Guardar en Arreglo)");
+            System.out.println("3. Mostrar citas del Arreglo y Lista de espera");
+            System.out.println("4. Atender al primer alumno de la Lista de espera");
             System.out.println("5. Salir");
             System.out.print("Ingresa una opcion: ");
             opcion = entrada.nextInt();
@@ -29,17 +29,17 @@ public class Main {
                     System.out.println("Ingresa tu matricula:");
                     matricula = entrada.nextInt();
 
-                    Cita citaEncontrada = agenda.buscarCitaPorMatricula(matricula);
+                    // Primero verificamos en el ARREGLO si el alumno tiene cita registrada
+                    Cita citaEncontrada = agenda.verificarCitaEnArreglo(matricula);
 
                     if (citaEncontrada != null) {
-                        System.out.println("Cita registrada encontrada!");
+                        System.out.println("Cita registrada encontrada en el arreglo!");
                         System.out.println("Alumno: " + citaEncontrada.getAlumno().getNombre()
                                 + " " + citaEncontrada.getAlumno().getMatricula());
                         System.out.println("Motivo: " + citaEncontrada.getMotivo());
-                        System.out.println("Pasa directamente con el tutor.");
-                        agenda.atenderConCitaPrevia(citaEncontrada);
+                        System.out.println(">> Pasa directamente con el tutor.");
                     } else {
-                        System.out.println("No tienes cita registrada. Registrate para formarte en la lista.");
+                        System.out.println("No tienes cita en el arreglo. Debes registrarte en la Lista de espera.");
                         entrada.nextLine();
                         System.out.println("Ingresa tu nombre:");
                         nombre = entrada.nextLine();
@@ -48,8 +48,8 @@ public class Main {
 
                         Alumno nuevoAlumno = new Alumno(nombre, matricula);
                         Cita nuevoRegistro = new Cita(nuevoAlumno, motivo, false);
-                        agenda.agregarCita(nuevoRegistro);
-                        System.out.println("Registro completado. Quedaste al final de la lista.");
+                        agenda.registrarEnListaEspera(nuevoRegistro);
+                        System.out.println("Te has registrado al final de la Lista Enlazada.");
                     }
                     break;
 
@@ -64,16 +64,15 @@ public class Main {
 
                     Alumno al = new Alumno(nombre, matricula);
                     Cita nuevaCita = new Cita(al, motivo, true);
-                    agenda.agregarCita(nuevaCita);
-                    System.out.println("Cita previa registrada en la lista.");
+                    agenda.guardarCitaEnArreglo(nuevaCita);
                     break;
 
                 case 3:
-                    agenda.mostrarLista();
+                    agenda.mostrarAgenda();
                     break;
 
                 case 4:
-                    agenda.atenderSiguiente();
+                    agenda.atenderSiguienteDeLista();
                     break;
 
                 case 5:
