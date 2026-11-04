@@ -1,32 +1,29 @@
 import java.util.LinkedList;
 
+// === EXPLICA DIEGO: Clase AgendaTutorias (Manejo de Arreglo y Listas Enlazadas) ===
 public class AgendaTutorias {
 
-    // 1. ARREGLO DE OBJETOS (Estructura estatica - Unidad 1)
-    // Guarda las citas previas registradas para el verificador de citas
+    // Arreglo estatico de objetos para guardar las citas agendadas previamente (cupo de 5)
     Cita citasRegistradas[] = new Cita[5];
     int contadorCitas = 0;
 
-    // 2. LISTA ENLAZADA DE ESPERA (Estructura dinamica lineal - Unidad 2)
-    // Guarda a los alumnos que llegan SIN cita y deben formarse
+    // Estructura lineal dinamica (LinkedList) para formar a los alumnos que llegan SIN cita
     LinkedList<Cita> listaEspera = new LinkedList<Cita>();
 
-    // 3. LISTA ENLAZADA DE HISTORIAL DE ATENDIDOS (Unidad 2)
-    // Guarda los nodos de todos los alumnos que ya recibieron tutoria
+    // Segunda Lista Enlazada para guardar el historial de alumnos que ya fueron atendidos
     LinkedList<Cita> listaAtendidos = new LinkedList<Cita>();
 
+    // Constructor: precarga 2 alumnos con cita previa en el arreglo para hacer pruebas
     public AgendaTutorias() {
-        // Se crean objetos Alumno igual que en las diapositivas 8 y 9
         Alumno alumno1 = new Alumno("Juan", 181234);
         Alumno alumno2 = new Alumno("Ana", 193234);
 
-        // Se asignan al arreglo de citas registradas
         citasRegistradas[0] = new Cita(alumno1.getMatricula(), alumno1.getNombre(), "Dudas de POO (10:00 AM)", true);
         citasRegistradas[1] = new Cita(alumno2.getMatricula(), alumno2.getNombre(), "Recursividad (10:30 AM)", true);
         contadorCitas = 2;
     }
 
-    // Verifica si una matricula ya existe en el arreglo o en la lista de espera
+    // Recorre el arreglo y la lista para evitar que una misma matricula se registre dos veces
     public boolean existeMatricula(int matriculaBuscada) {
         for (int i = 0; i < contadorCitas; i++) {
             if (citasRegistradas[i] != null) {
@@ -43,7 +40,7 @@ public class AgendaTutorias {
         return false;
     }
 
-    // Metodo para agendar una nueva cita previa dentro del ARREGLO
+    // Guarda una nueva cita previa en la siguiente posicion disponible del arreglo
     public void guardarCitaEnArreglo(Cita nuevaCita) {
         if (contadorCitas < citasRegistradas.length) {
             citasRegistradas[contadorCitas] = nuevaCita;
@@ -54,15 +51,13 @@ public class AgendaTutorias {
         }
     }
 
-    // Verificador de citas: Busca en el ARREGLO si el alumno tiene cita registrada
+    // Busca la matricula en el arreglo: si existe, pasa directo con el tutor y se mueve a atendidos
     public Cita verificarCitaEnArreglo(int matriculaBuscada) {
         for (int indice = 0; indice < contadorCitas; indice++) {
             if (citasRegistradas[indice] != null) {
                 if (citasRegistradas[indice].getMatricula() == matriculaBuscada) {
                     Cita encontrada = citasRegistradas[indice];
-                    // Se marca como null porque ya paso directamente con el tutor
                     citasRegistradas[indice] = null;
-                    // Se guarda en la lista enlazada de alumnos ya atendidos
                     listaAtendidos.addLast(encontrada);
                     return encontrada;
                 }
@@ -71,17 +66,17 @@ public class AgendaTutorias {
         return null;
     }
 
-    // Insercion al final de la LISTA ENLAZADA (alumnos sin cita)
+    // Operacion de Lista: Inserta al alumno al FINAL de la lista de espera con addLast()
     public void registrarAlFinalDeLista(Cita nuevoRegistro) {
         listaEspera.addLast(nuevoRegistro);
     }
 
-    // Insercion al inicio de la LISTA ENLAZADA (caso urgente / prioritario - Diapositiva 6)
+    // Operacion de Lista: Inserta al alumno al INICIO de la lista con addFirst() por urgencia
     public void registrarAlInicioDeLista(Cita nuevoRegistro) {
         listaEspera.addFirst(nuevoRegistro);
     }
 
-    // Ver el primer alumno en la LISTA ENLAZADA sin eliminarlo (getFirst - Diapositiva 12)
+    // Operacion de Lista: Consulta quien esta al frente de la lista sin borrarlo con getFirst()
     public void verPrimeroDeLista() {
         if (!listaEspera.isEmpty()) {
             Cita primero = listaEspera.getFirst();
@@ -93,7 +88,7 @@ public class AgendaTutorias {
         }
     }
 
-    // Atiende y elimina al primer alumno de la LISTA ENLAZADA (removeFirst - Diapositiva 12)
+    // Operacion de Lista: Atiende y elimina al primer nodo de la lista con removeFirst()
     public void atenderSiguienteDeLista() {
         if (!listaEspera.isEmpty()) {
             Cita atendido = listaEspera.removeFirst();
@@ -106,7 +101,7 @@ public class AgendaTutorias {
         }
     }
 
-    // Eliminacion de un nodo intermedio por matricula (Reasignacion de enlaces - Diapositiva 7)
+    // Operacion de Lista: Busca por matricula y elimina un nodo intermedio con remove(i)
     public void cancelarRegistroDeLista(int matriculaBuscada) {
         if (!listaEspera.isEmpty()) {
             boolean eliminado = false;
@@ -127,7 +122,7 @@ public class AgendaTutorias {
         }
     }
 
-    // Muestra el Arreglo de citas, la Lista de espera y la Lista de atendidos
+    // Recorre e imprime el Arreglo de citas previas, la Lista de espera y la Lista de atendidos
     public void mostrarAgenda() {
         System.out.println("\n--- 1. ARREGLO DE CITAS REGISTRADAS (PASAN DIRECTO) ---");
         boolean hayCitasEnArreglo = false;

@@ -1,3 +1,5 @@
+// === EXPLICA COMPANERA: Clase Cita (Datos de cada registro de tutoria) ===
+// Representa cada cita o turno: guarda matricula, nombre, motivo y si tiene cita previa (true o false).
 public class Cita {
 
     private int matricula;
@@ -5,7 +7,7 @@ public class Cita {
     private String motivo;
     private boolean tieneCitaPrevia;
 
-    // Constructor con todos los datos
+    // Constructor: inicializa todos los datos de la cita
     public Cita(int matricula, String nombre, String motivo, boolean tieneCitaPrevia) {
         this.matricula = matricula;
         this.nombre = nombre;
@@ -13,7 +15,7 @@ public class Cita {
         this.tieneCitaPrevia = tieneCitaPrevia;
     }
 
-    // Metodos get y set
+    // Metodos get (para consultar los datos) y set (para modificarlos)
     public int getMatricula() {
         return matricula;
     }

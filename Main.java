@@ -2,11 +2,13 @@ import java.util.Scanner;
 
 public class Main {
 
+    // === EXPLICA COMPANERA: Metodo main y estructura del Menu con do-while ===
     public static void main(String[] args) {
         visualizarOperaciones();
     }
 
     public static void visualizarOperaciones() {
+        // Scanner para leer los datos que el usuario escribe en la terminal
         Scanner entrada = new Scanner(System.in);
         AgendaTutorias agenda = new AgendaTutorias();
         int opcion;
@@ -16,6 +18,7 @@ public class Main {
         String hora;
         int tipoUrgencia;
 
+        // Ciclo do-while que mantiene el menu repitiendose hasta elegir la opcion 7 (Salir)
         do {
             System.out.println("\nAGENDA DE CITAS PARA TUTORIAS INDIVIDUALES");
             System.out.println("1. Llegada de alumno (Verificar cita en Arreglo o registrar en Lista)");
@@ -28,22 +31,24 @@ public class Main {
             System.out.print("Ingresa una opcion: ");
             opcion = entrada.nextInt();
 
+            // === EXPLICA DIEGO: Opciones del switch y ejecucion en terminal ===
             switch (opcion) {
                 case 1:
+                    // Caso principal: Verifica si la matricula esta en el arreglo de citas
                     System.out.println("Ingresa tu matricula:");
                     matricula = entrada.nextInt();
 
-                    // Primero verificamos en el ARREGLO si el alumno tiene cita registrada
                     Cita citaEncontrada = agenda.verificarCitaEnArreglo(matricula);
 
                     if (citaEncontrada != null) {
+                        // Si tiene cita registrada, pasa directo con el tutor
                         System.out.println("Cita registrada encontrada en el arreglo!");
                         System.out.println("Alumno: " + citaEncontrada.getNombre()
                                 + " | Matricula: " + citaEncontrada.getMatricula());
                         System.out.println("Motivo: " + citaEncontrada.getMotivo());
                         System.out.println(">> Pasa directamente con el tutor.");
                     } else {
-                        // Validamos que no este ya formado en la lista de espera
+                        // Si no tiene cita, se registra y se inserta en la Lista Enlazada (LinkedList)
                         if (agenda.existeMatricula(matricula) == true) {
                             System.out.println("Ya te encuentras formado en la Lista de espera. Aguarda tu turno.");
                         } else {
@@ -71,6 +76,7 @@ public class Main {
                     break;
 
                 case 2:
+                    // Registra una nueva cita previa dentro del arreglo estatico
                     System.out.println("Ingresa la matricula del alumno:");
                     matricula = entrada.nextInt();
 
@@ -92,18 +98,22 @@ public class Main {
                     break;
 
                 case 3:
+                    // Muestra el contenido actual del arreglo y de las listas enlazadas
                     agenda.mostrarAgenda();
                     break;
 
                 case 4:
+                    // Muestra al primer alumno de la lista sin eliminarlo (getFirst)
                     agenda.verPrimeroDeLista();
                     break;
 
                 case 5:
+                    // Atiende y elimina al primer alumno de la lista de espera (removeFirst)
                     agenda.atenderSiguienteDeLista();
                     break;
 
                 case 6:
+                    // Busca y elimina a un alumno de la lista de espera por su matricula (remove)
                     System.out.println("Ingresa la matricula que deseas dar de baja de la Lista de espera:");
                     matricula = entrada.nextInt();
                     agenda.cancelarRegistroDeLista(matricula);
