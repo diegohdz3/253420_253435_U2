@@ -67,6 +67,10 @@ public class AgendaTutorias {
     }
 
     // Operacion de Lista: Inserta al alumno al FINAL de la lista de espera con addLast()
+    public void registrarEnListaEspera(Cita nuevoRegistro) {
+        listaEspera.addLast(nuevoRegistro);
+    }
+
     public void registrarAlFinalDeLista(Cita nuevoRegistro) {
         listaEspera.addLast(nuevoRegistro);
     }

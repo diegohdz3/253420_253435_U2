@@ -62,7 +62,7 @@ public class Main {
                             tipoUrgencia = entrada.nextInt();
 
                             Alumno nuevoAlumno = new Alumno(nombre, matricula);
-                            Cita nuevoRegistro = new Cita(nuevoAlumno.getMatricula(), nuevoAlumno.getNombre(), motivo, false);
+                            Cita nuevoRegistro = new Cita(nuevoAlumno, motivo, false);
 
                             if (tipoUrgencia == 2) {
                                 agenda.registrarAlInicioDeLista(nuevoRegistro);
@@ -92,7 +92,7 @@ public class Main {
                         hora = entrada.nextLine();
 
                         Alumno al = new Alumno(nombre, matricula);
-                        Cita nuevaCita = new Cita(al.getMatricula(), al.getNombre(), motivo + " (" + hora + ")", true);
+                        Cita nuevaCita = new Cita(al, motivo + " (" + hora + ")", true);
                         agenda.guardarCitaEnArreglo(nuevaCita);
                     }
                     break;
@@ -123,7 +123,7 @@ public class Main {
                     System.out.println("Fin del programa.");
                     break;
 
-                default:
+              default:
                     System.out.println("Error: Opcion no valida");
             }
         } while (opcion != 7);
